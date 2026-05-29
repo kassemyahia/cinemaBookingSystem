@@ -17,3 +17,19 @@ spring:
 
   flyway:
     enabled: true
+
+jwt:
+  secret: ${JWT_SECRET:mDCYc4lLx5uc1Upr4sOyEPs5CNS5UZ4ZriJwS2ds12EtzqGjVcQLmzPFXNI64iJl}
+  expiration: ${JWT_EXPIRATION:900}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800}
+
+app:
+  cookies:
+    secure: ${COOKIE_SECURE:false}
+    same-site: ${COOKIE_SAME_SITE:Lax}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+  website-url: ${WEBSITE_URL:http://localhost:8080}
+
+server:
+  forward-headers-strategy: framework
