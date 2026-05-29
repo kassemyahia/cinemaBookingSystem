@@ -1,0 +1,18 @@
+package com.example.cinemabookingsystem.repositories;
+
+import com.example.cinemabookingsystem.entity.Comment;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface CommentRepository extends JpaRepository<Comment, Long> {
+    Optional<List<Comment>> findByUserId(Long userId);
+    Optional<List<Comment>> findByMovieId(Long movieId);
+
+    @EntityGraph(attributePaths = {"movie", "user"})
+    @Query("SELECT c FROM Comment c")
+    List<Comment> findAllWithMovieAndUser();
+}
